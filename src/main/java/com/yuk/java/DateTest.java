@@ -9,6 +9,16 @@ public class DateTest {
     }
 
     public static void test1() {
+        Date nowDate=new Date();
+        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        String nowDateStr = simpleDateFormat.format(nowDate);
+        // nowDateStr:2020-05-19 06:40:43
+        System.out.println("nowDateStr:" + nowDateStr);
+
+        simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        nowDateStr = simpleDateFormat.format(nowDate);
+        // nowDateStr:2020-05-19 18:40:43
+        System.out.println("nowDateStr:" + nowDateStr);
 
         String currentTime = getCurrectData();
         // 8点这个点的时间戳
