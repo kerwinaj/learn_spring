@@ -42,6 +42,13 @@ public class Order6_FieldAndMethodTest {
         Base1 d2b = d;
         System.out.println("d2b.count:" + d2b.count);
         d2b.display();
+
+        /**
+         * 这里即使强制转型了, 实际上还是 Derived1 对象.
+         */
+        Base1 bbbb = (Base1)d;
+        System.out.println("bbbb.count:" + bbbb.count);
+        bbbb.display();
     }
 }
 
