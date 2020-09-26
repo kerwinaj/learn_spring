@@ -1,3 +1,5 @@
+package com.crazyjava.codes.chapter02;
+
 class Cat{
     {
         System.out.println("执行非静态初始化块0");

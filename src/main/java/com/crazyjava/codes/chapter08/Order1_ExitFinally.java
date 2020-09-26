@@ -1,3 +1,5 @@
+package com.crazyjava.codes.chapter08;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 

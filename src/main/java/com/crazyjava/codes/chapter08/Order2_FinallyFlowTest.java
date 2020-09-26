@@ -1,3 +1,5 @@
+package com.crazyjava.codes.chapter08;
+
 /**
  * try 语句中, 遇到return和throw两个语句时, 先去找有没有finally语句块, 有就执行finally语句块;
  * finally语句块中, 正常是执行完返回return或者throw语句, 但如果里面还有return语句就会直接返回(所以是不建议在finally语句块中写return语句的);

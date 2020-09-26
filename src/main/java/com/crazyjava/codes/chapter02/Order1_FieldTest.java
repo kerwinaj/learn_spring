@@ -1,3 +1,5 @@
+package com.crazyjava.codes.chapter02;
+
 class Person{
     String name;
     int age;

@@ -1,3 +1,5 @@
+package com.crazyjava.codes.chapter02;
+
 /**
  * 类变量初始化的2个时机(按顺序的):
  * a. 定义时指定初始值;

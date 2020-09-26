@@ -1,3 +1,5 @@
+package com.crazyjava.codes.chapter02;
+
 class Price{
     static {
         System.out.println("静态代码块0");

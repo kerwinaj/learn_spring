@@ -1,3 +1,5 @@
+package com.crazyjava.codes.chapter07;
+
 /**
  * instanceof运算符
  *      编译阶段(使用限制, 比运行时的范围宽):

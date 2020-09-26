@@ -1,3 +1,5 @@
+package com.crazyjava.codes.chapter02;
+
 /**
  * int count =20; 会拆分成两句:
  *      int count =0; // 创建对象, 并且分配好内存, 初始值为0
