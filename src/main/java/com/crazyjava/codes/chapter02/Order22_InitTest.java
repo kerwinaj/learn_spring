@@ -37,7 +37,7 @@ class Cat{
     }
 }
 
-public class Order2_InitTest {
+public class Order22_InitTest {
     /**
      * 实例变量初始化的3个时机(按顺序的):
      * a. 定义时指定初始值;

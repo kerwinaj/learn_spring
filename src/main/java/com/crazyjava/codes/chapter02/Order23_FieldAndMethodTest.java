@@ -3,7 +3,7 @@ package com.crazyjava.codes.chapter02;
 /**
  * 和 Test 一样, new Derived1()的时候, 也是有2个count变量的, 虽然这里不是private修饰的.
  */
-public class Order6_FieldAndMethodTest {
+public class Order23_FieldAndMethodTest {
     public static void main(String[] args) {
         /**
          * b.count:2

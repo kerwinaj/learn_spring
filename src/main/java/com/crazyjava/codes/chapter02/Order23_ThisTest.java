@@ -4,7 +4,7 @@ package com.crazyjava.codes.chapter02;
  * 这个例子验证了:
  *      this 调用 实例变量和方式时, 和 Order6_FieldAndMethodTest 中一样
  */
-public class Order7_ThisTest{
+public class Order23_ThisTest {
     public static void main(String[] args) {
         new Derived();
     }

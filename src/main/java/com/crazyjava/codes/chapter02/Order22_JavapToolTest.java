@@ -6,7 +6,7 @@ package com.crazyjava.codes.chapter02;
  *      count =20;// 通过javap分析, 这句话会被编译器挪到构造器中执行, 不过是在构造器里排在最前面;
  * count = 12; 也会被编译器挪到构造器中执行;
  */
-public class Order3_JavapToolTest {
+public class Order22_JavapToolTest {
     int count =20;
     {
         System.out.println("代码块-开始, count:" + count);
@@ -14,16 +14,16 @@ public class Order3_JavapToolTest {
         System.out.println("代码块-结束, count:" + count);
     }
 
-    public Order3_JavapToolTest(int count) {
+    public Order22_JavapToolTest(int count) {
         this.count = count;
         System.out.println("有参构造器, count:" + count);
     }
 
-    public Order3_JavapToolTest() {
+    public Order22_JavapToolTest() {
         System.out.println("无参构造器, count:" + count);
     }
 
     public static void main(String[] args) {
-        Order3_JavapToolTest test = new Order3_JavapToolTest();
+        Order22_JavapToolTest test = new Order22_JavapToolTest();
     }
 }

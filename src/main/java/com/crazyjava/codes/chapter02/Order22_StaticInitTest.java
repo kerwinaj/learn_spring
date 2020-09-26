@@ -5,7 +5,7 @@ package com.crazyjava.codes.chapter02;
  * a. 定义时指定初始值;
  * b. 静态代码块中指定初始值;
  */
-public class Order4_StaticInitTest {
+public class Order22_StaticInitTest {
     static int count = 2;
 
     static {
@@ -21,7 +21,7 @@ public class Order4_StaticInitTest {
     }
 
     public static void main(String[] args) {
-        System.out.println("类变量的值, count:" + Order4_StaticInitTest.count);
-        System.out.println("类变量的值, name:" + Order4_StaticInitTest.name);
+        System.out.println("类变量的值, count:" + Order22_StaticInitTest.count);
+        System.out.println("类变量的值, name:" + Order22_StaticInitTest.name);
     }
 }
