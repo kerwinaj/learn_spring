@@ -1,5 +1,15 @@
 package com.crazyjava.codes.chapter02;
 
+/**
+ * 这个例子验证了:
+ *      this 调用 实例变量和方式时, 和 Order6_FieldAndMethodTest 中一样
+ */
+public class Order7_ThisTest{
+    public static void main(String[] args) {
+        new Derived();
+    }
+}
+
 class Base {
     {
         System.out.println("[Base.{}]");
@@ -37,10 +47,5 @@ class Derived extends Base{
     @Override
     public void display(){
         System.out.println("[Derived.display]i:"+i);
-    }
-}
-public class Test{
-    public static void main(String[] args) {
-        new Derived();
     }
 }
