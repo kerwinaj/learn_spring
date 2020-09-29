@@ -34,3 +34,12 @@ Order23_SuperTest:
 Order23_SuperTest02:
     父子继承时
         super的作用:调用父类的方法
+        
+        
+Order24_FinalTest:
+    final修饰的变量必须要有初始值, 不然编译不通过, 这个例子是成员变量;
+    
+Order24_FinalTest2:
+    类变量也是一样!
+    
+   
