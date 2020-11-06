@@ -1,5 +1,6 @@
 package com.yuk.source.springboot.importtest4;
 
+import com.yuk.source.springboot.SpringUtils;
 import com.yuk.source.springboot.dto.Cat;
 import com.yuk.source.springboot.dto.Dog;
 import org.springframework.boot.SpringApplication;
@@ -16,6 +17,7 @@ public class App04 {
 		System.out.println(context.getBean("myDog", Dog.class));
 		System.out.println(context.getBean(Dog.class));
 		System.out.println(context.getBean(Cat.class));
+		SpringUtils.printAllBean(context, new Class[]{Dog.class, Cat.class});
 		context.close();
 	}
 }
