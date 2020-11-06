@@ -1,5 +1,7 @@
 package com.yuk.source.springboot.importtest2;
 
+import com.yuk.source.springboot.dto.Cat;
+import com.yuk.source.springboot.dto.Dog;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
