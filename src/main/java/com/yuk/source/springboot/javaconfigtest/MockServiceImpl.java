@@ -1,9 +1,13 @@
 package com.yuk.source.springboot.javaconfigtest;
 
 public class MockServiceImpl implements MockService {
-    DependencyService dependencyService;
+    MockDependencyService mockDependencyService;
 
-    public MockServiceImpl(DependencyService dependencyService) {
-        this.dependencyService = dependencyService;
+    public MockServiceImpl(MockDependencyService mockDependencyService) {
+        this.mockDependencyService = mockDependencyService;
+    }
+
+    public MockDependencyService getMockDependencyService() {
+        return mockDependencyService;
     }
 }

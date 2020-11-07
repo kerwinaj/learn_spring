@@ -11,7 +11,7 @@ public class MockConfiguration {
     }
 
     @Bean
-    public DependencyService dependencyService(){
-        return new DependencyServiceImpl();
+    public MockDependencyService dependencyService(){
+        return new MockDependencyServiceImpl();
     }
 }

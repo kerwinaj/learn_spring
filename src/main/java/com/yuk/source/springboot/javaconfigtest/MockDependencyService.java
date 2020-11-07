@@ -1,4 +1,4 @@
 package com.yuk.source.springboot.javaconfigtest;
 
-public interface DependencyService {
+public interface MockDependencyService {
 }
