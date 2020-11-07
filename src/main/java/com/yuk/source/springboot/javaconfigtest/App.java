@@ -1,7 +1,9 @@
 package com.yuk.source.springboot.javaconfigtest;
 
-import cn.hutool.extra.spring.SpringUtil;
 import com.yuk.source.springboot.SpringUtils;
+import com.yuk.source.springboot.dto.javaconfig.MockDependencyService;
+import com.yuk.source.springboot.dto.javaconfig.MockService;
+import com.yuk.source.springboot.dto.javaconfig.MockServiceImpl;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
