@@ -1,5 +1,6 @@
 package com.yuk.source.springboot;
 
+import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.ArrayUtil;
 import com.yuk.source.springboot.dto.Dog;
 import org.apache.commons.lang3.StringUtils;
@@ -15,18 +16,26 @@ public class SpringUtils {
         if (null == applicationContext) {
             return;
         }
-        Set<String> filterSet = new HashSet<>();
+        Set<String> classNameSet = new HashSet<>();
         if (ArrayUtil.isNotEmpty(includeFilterArray)) {
             for (Class aClass : includeFilterArray) {
-                filterSet.add(aClass.getSimpleName());
+                classNameSet.add(aClass.getSimpleName());
             }
         }
-        System.out.println("[printAllBean]before print, filterSet:" + filterSet);
+        boolean filter = true;
+        if (CollectionUtil.isEmpty(classNameSet)) {
+            filter = false;
+        }
+        System.out.println("[printAllBean]before print, classNameSet:" + classNameSet);
         for (String beanDefinitionName : applicationContext.getBeanDefinitionNames()) {
-            for (String filter : filterSet) {
-                if (StringUtils.contains(beanDefinitionName, filter)) {
-                    System.out.println("[printAllBean]loaded beanDefinitionName:"+beanDefinitionName);
+            if (filter) {
+                for (String bdStr : classNameSet) {
+                    if (StringUtils.contains(beanDefinitionName, bdStr)) {
+                        System.out.println("[printAllBean]loaded beanDefinitionName:"+beanDefinitionName);
+                    }
                 }
+            } else {
+                System.out.println("[printAllBean]loaded beanDefinitionName:"+beanDefinitionName);
             }
         }
         System.out.println("[printAllBean]after print");
