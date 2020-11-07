@@ -1,7 +1,9 @@
 package com.yuk.source.springboot;
 
 import cn.hutool.core.util.ArrayUtil;
+import com.yuk.source.springboot.dto.Dog;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 
 import java.util.HashSet;
@@ -23,10 +25,29 @@ public class SpringUtils {
         for (String beanDefinitionName : applicationContext.getBeanDefinitionNames()) {
             for (String filter : filterSet) {
                 if (StringUtils.contains(beanDefinitionName, filter)) {
-                    System.out.println("loaded beanDefinitionName:"+beanDefinitionName);
+                    System.out.println("[printAllBean]loaded beanDefinitionName:"+beanDefinitionName);
                 }
             }
         }
         System.out.println("[printAllBean]after print");
+    }
+
+    public static void printBeanIgnoreException(ApplicationContext applicationContext, Class clazz){
+        try {
+            System.out.println("[printBeanIgnoreException]success:" + applicationContext.getBean(clazz));
+        } catch (BeansException e) {
+            System.out.println("[printBeanIgnoreException]exception:" + e.getMessage() + ",className:" +  clazz.getName());
+//            e.printStackTrace();
+        }
+    }
+
+
+    public static void printBeanIgnoreException(ApplicationContext applicationContext, String name, Class clazz){
+        try {
+            System.out.println("[printBeanIgnoreException]success:" + applicationContext.getBean(name, clazz));
+        } catch (BeansException e) {
+            System.out.println("[printBeanIgnoreException]exception:" + e.getMessage() + ",name:"+ name+ ",className:" + clazz.getName());
+//            e.printStackTrace();
+        }
     }
 }
