@@ -1,4 +1,4 @@
-package com.yuk.source.springboot.javaconfigtest;
+package com.yuk.source.springboot.javaconfigtest02;
 
 import com.yuk.source.springboot.SpringUtils;
 import com.yuk.source.springboot.dto.javaconfig.MockDependencyService;
@@ -9,9 +9,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
 @SpringBootApplication
-public class App {
+public class App02 {
 	public static void main(String[] args) {
-		ConfigurableApplicationContext context = SpringApplication.run(App.class, args);
+		ConfigurableApplicationContext context = SpringApplication.run(App02.class, args);
 		SpringUtils.printAllBean(context, new Class[]{});
 		MockService mockService = context.getBean(MockService.class);
 		// 是否有这个对象
