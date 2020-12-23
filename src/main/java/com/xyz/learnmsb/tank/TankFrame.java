@@ -29,6 +29,7 @@ public class TankFrame extends Frame {
     public void paint(Graphics graphics) {
         System.out.println("call paint");
         graphics.fillRect(x, y, 50, 50);
+        x += 10;
     }
 
     class MyKeyListener extends KeyAdapter {
