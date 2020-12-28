@@ -103,6 +103,7 @@ public class TankFrame extends Frame {
             setMainTankDir();
         }
 
+
         private void setMainTankDir(){
             if(bL) {
                 dir = Dir.LEFT;
