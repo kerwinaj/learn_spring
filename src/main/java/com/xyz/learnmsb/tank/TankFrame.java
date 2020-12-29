@@ -8,7 +8,7 @@ import java.awt.event.WindowEvent;
 
 public class TankFrame extends Frame {
 
-    Tank myTank = new Tank(200, 200, Dir.DOWN);
+    Tank myTank = new Tank(200, 200, Dir.DOWN, this);
     Bullet bullet = new Bullet(300, 300, Dir.DOWN);
     private final static  int GAME_WIDTH = 800;
     private final static  int GAME_HEIGHT = 600;
@@ -99,7 +99,7 @@ public class TankFrame extends Frame {
                     break;
                     // ctrl 控制写在 keyReleased方法中, 因为如果写在 keyPressed 的时候, 按住不放会发射出很多的子弹.
                 case KeyEvent.VK_CONTROL:
-                    bullet = myTank.fire();
+                    myTank.fire();
                     break;
                 default:
                     break;
