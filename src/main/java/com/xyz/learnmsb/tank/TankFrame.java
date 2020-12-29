@@ -97,6 +97,10 @@ public class TankFrame extends Frame {
                 case KeyEvent.VK_DOWN:
                     bD = false;
                     break;
+                    // ctrl 控制写在 keyReleased方法中, 因为如果写在 keyPressed 的时候, 按住不放会发射出很多的子弹.
+                case KeyEvent.VK_CONTROL:
+                    bullet = new Bullet(myTank.x, myTank.y, myTank.dir);
+                    break;
                 default:
                     break;
             }
