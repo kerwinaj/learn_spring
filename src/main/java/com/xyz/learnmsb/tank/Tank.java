@@ -60,4 +60,8 @@ public class Tank {
     public void setMoving(boolean moving) {
         this.moving = moving;
     }
+
+    public Bullet fire() {
+        return new Bullet(x, y, dir);
+    }
 }
