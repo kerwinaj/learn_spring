@@ -11,14 +11,20 @@ public class Bullet {
     Dir dir = Dir.DOWN;
     private final static int SPEED = 10;
     private boolean live = true;
+    private TankFrame tf = null;
 
-    public Bullet(int x, int y, Dir dir) {
+    public Bullet(int x, int y, Dir dir, TankFrame tf) {
         this.x = x;
         this.y = y;
         this.dir = dir;
+        this.tf = tf;
     }
 
     public void paint(Graphics graphics) {
+        if(!live) {
+            tf.bulletList.remove(this);
+        }
+
         Color color = graphics.getColor();
         graphics.setColor(Color.RED);
         graphics.fillOval(x, y, width, heigh);

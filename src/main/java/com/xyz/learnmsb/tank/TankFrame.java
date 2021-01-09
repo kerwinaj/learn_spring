@@ -54,14 +54,9 @@ public class TankFrame extends Frame {
 
         System.out.println("call paint");
         myTank.paint(graphics);
-        Iterator<Bullet> iterator = bulletList.iterator();
-        while (iterator.hasNext()) {
-            Bullet bullet = iterator.next();
-            if (bullet.isLive()) {
-                bullet.paint(graphics);
-            } else {
-                iterator.remove();
-            }
+
+        for (Bullet bullet : bulletList) {
+            bullet.paint(graphics);
         }
     }
 
