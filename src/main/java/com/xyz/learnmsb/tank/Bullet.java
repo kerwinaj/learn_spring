@@ -9,7 +9,8 @@ public class Bullet {
     private int width=20;
     private int heigh=20;
     Dir dir = Dir.DOWN;
-    private final static int SPEED = 1;
+    private final static int SPEED = 10;
+    private boolean live = true;
 
     public Bullet(int x, int y, Dir dir) {
         this.x = x;
@@ -43,5 +44,14 @@ public class Bullet {
             default:
                 break;
         }
+
+        if(x< 0 || y<0) {
+           live = false;
+        }
     }
+
+    public boolean isLive() {
+        return live;
+    }
+
 }

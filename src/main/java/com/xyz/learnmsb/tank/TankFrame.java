@@ -6,6 +6,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class TankFrame extends Frame {
 
@@ -46,10 +47,21 @@ public class TankFrame extends Frame {
 
     @Override
     public void paint(Graphics graphics) {
+        Color color = graphics.getColor();
+        graphics.setColor(Color.WHITE);
+        graphics.drawString("子弹的数量:" + bulletList.size(), 10, 60);
+        graphics.setColor(color);
+
         System.out.println("call paint");
         myTank.paint(graphics);
-        for (Bullet bullet : bulletList) {
-            bullet.paint(graphics);
+        Iterator<Bullet> iterator = bulletList.iterator();
+        while (iterator.hasNext()) {
+            Bullet bullet = iterator.next();
+            if (bullet.isLive()) {
+                bullet.paint(graphics);
+            } else {
+                iterator.remove();
+            }
         }
     }
 
