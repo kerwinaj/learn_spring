@@ -12,8 +12,8 @@ public class TankFrame extends Frame {
 
     Tank myTank = new Tank(200, 200, Dir.DOWN, this);
     java.util.List<Bullet> bulletList = new ArrayList<>();
-    private final static  int GAME_WIDTH = 800;
-    private final static  int GAME_HEIGHT = 600;
+    public final static int GAME_WIDTH = 800;
+    public final static int GAME_HEIGHT = 600;
     public TankFrame() {
         setSize(GAME_WIDTH, GAME_HEIGHT);
         setResizable(false);
@@ -55,8 +55,8 @@ public class TankFrame extends Frame {
         System.out.println("call paint");
         myTank.paint(graphics);
 
-        for (Bullet bullet : bulletList) {
-            bullet.paint(graphics);
+        for (int i = 0; i < bulletList.size(); i++) {
+            bulletList.get(i).paint(graphics);
         }
     }
 

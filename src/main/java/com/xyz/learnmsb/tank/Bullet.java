@@ -51,7 +51,7 @@ public class Bullet {
                 break;
         }
 
-        if(x< 0 || y<0) {
+        if(x< 0 || y<0 || x> TankFrame.GAME_WIDTH  || y > TankFrame.GAME_HEIGHT) {
            live = false;
         }
     }
