@@ -1,6 +1,7 @@
 package com.xyz.learnmsb.tank;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class Tank {
     int x=200, y=200;
@@ -18,8 +19,32 @@ public class Tank {
 
     public void paint(Graphics graphics) {
         Color color = graphics.getColor();
-        graphics.setColor(Color.YELLOW);
-        graphics.fillRect(x, y, 50, 50);
+//        graphics.setColor(Color.YELLOW);
+//        graphics.fillRect(x, y, 50, 50);
+
+        BufferedImage bufferedImage = null;
+        switch (dir) {
+            case LEFT:
+                bufferedImage = ResourceMgr.tankL;
+                break;
+            case UP:
+                bufferedImage = ResourceMgr.tankU;
+                break;
+            case RIGHT:
+                bufferedImage = ResourceMgr.tankR;
+                break;
+            case DOWN:
+                bufferedImage = ResourceMgr.tankD;
+                break;
+            default:
+                break;
+        }
+
+        if (null == bufferedImage) {
+            System.out.println("bufferedImage is null");
+        }
+        graphics.drawImage(bufferedImage, x, y, null);
+
         graphics.setColor(color);
 
         move();
