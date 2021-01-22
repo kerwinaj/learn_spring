@@ -7,8 +7,8 @@ public class Bullet {
 
     private int x=300;
     private int y=300;
-    private int width=20;
-    private int heigh=20;
+    public static int width= ResourceMgr.bulletD.getWidth();
+    public static int height= ResourceMgr.bulletD.getHeight();
     Dir dir = Dir.DOWN;
     private final static int SPEED = 10;
     private boolean live = true;
@@ -28,7 +28,7 @@ public class Bullet {
 
         Color color = graphics.getColor();
 //        graphics.setColor(Color.RED);
-//        graphics.fillOval(x, y, width, heigh);
+//        graphics.fillOval(x, y, width, height);
 
         BufferedImage bufferedImage = null;
         switch (dir) {
