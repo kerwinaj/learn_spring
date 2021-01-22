@@ -41,7 +41,7 @@ public class Tank {
         }
 
         if (null == bufferedImage) {
-            System.out.println("bufferedImage is null");
+            System.out.println("[Tank.paint]bufferedImage is null");
         }
         graphics.drawImage(bufferedImage, x, y, null);
 

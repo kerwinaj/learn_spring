@@ -1,6 +1,7 @@
 package com.xyz.learnmsb.tank;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class Bullet {
 
@@ -26,8 +27,32 @@ public class Bullet {
         }
 
         Color color = graphics.getColor();
-        graphics.setColor(Color.RED);
-        graphics.fillOval(x, y, width, heigh);
+//        graphics.setColor(Color.RED);
+//        graphics.fillOval(x, y, width, heigh);
+
+        BufferedImage bufferedImage = null;
+        switch (dir) {
+            case LEFT:
+                bufferedImage = ResourceMgr.bulletL;
+                break;
+            case UP:
+                bufferedImage = ResourceMgr.bulletU;
+                break;
+            case RIGHT:
+                bufferedImage = ResourceMgr.bulletR;
+                break;
+            case DOWN:
+                bufferedImage = ResourceMgr.bulletD;
+                break;
+            default:
+                break;
+        }
+
+        if (null == bufferedImage) {
+            System.out.println("[Bullet.paint]bufferedImage is null");
+        }
+        graphics.drawImage(bufferedImage, x, y, null);
+
         graphics.setColor(color);
 
         move();
