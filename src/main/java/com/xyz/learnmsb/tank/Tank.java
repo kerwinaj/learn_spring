@@ -11,6 +11,7 @@ public class Tank {
     private TankFrame tf = null;
     public static int width= ResourceMgr.tankD.getWidth();
     public static int height= ResourceMgr.tankD.getHeight();
+    private boolean living = true;
 
     public Tank(int x, int y, Dir dir, TankFrame tf) {
         this.x = x;
@@ -20,6 +21,9 @@ public class Tank {
     }
 
     public void paint(Graphics graphics) {
+        if (!living) {
+            tf.tankList.remove(this);
+        }
         Color color = graphics.getColor();
 //        graphics.setColor(Color.YELLOW);
 //        graphics.fillRect(x, y, 50, 50);
@@ -94,5 +98,9 @@ public class Tank {
         int bX = x + Tank.width/2 - Bullet.width/2;
         int bY = y + Tank.height/2 - Bullet.height/2;
         tf.bulletList.add(new Bullet(bX, bY, dir, tf));
+    }
+
+    public void die() {
+        living = false;
     }
 }

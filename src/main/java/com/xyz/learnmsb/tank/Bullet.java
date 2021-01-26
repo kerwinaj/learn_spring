@@ -85,4 +85,16 @@ public class Bullet {
         return living;
     }
 
+    public void die() {
+        this.living = false;
+    }
+
+    public void collideWith(Tank tank) {
+        Rectangle rect1 = new Rectangle(this.x, this.y, Bullet.width, Bullet.height);
+        Rectangle rect2 = new Rectangle(tank.x, tank.y, Tank.width, Tank.height);
+        if (rect1.intersects(rect2)) {
+            this.die();
+            tank.die();
+        }
+    }
 }

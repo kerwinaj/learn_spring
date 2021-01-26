@@ -51,6 +51,7 @@ public class TankFrame extends Frame {
         Color color = graphics.getColor();
         graphics.setColor(Color.WHITE);
         graphics.drawString("子弹的数量:" + bulletList.size(), 10, 60);
+        graphics.drawString("敌人的数量:" + tankList.size(), 10, 80);
         graphics.setColor(color);
 
         System.out.println("call paint");
@@ -62,6 +63,13 @@ public class TankFrame extends Frame {
 
         for (int i = 0; i < tankList.size(); i++) {
             tankList.get(i).paint(graphics);
+        }
+
+        // 碰撞检测
+        for (int i = 0; i<bulletList.size(); i++ ){
+            for (int j = 0; j < tankList.size(); j++) {
+                bulletList.get(i).collideWith(tankList.get(j));
+            }
         }
     }
 
