@@ -11,7 +11,7 @@ public class Bullet {
     public static int height= ResourceMgr.bulletD.getHeight();
     Dir dir = Dir.DOWN;
     private final static int SPEED = 10;
-    private boolean live = true;
+    private boolean living = true;
     private TankFrame tf = null;
 
     public Bullet(int x, int y, Dir dir, TankFrame tf) {
@@ -22,7 +22,7 @@ public class Bullet {
     }
 
     public void paint(Graphics graphics) {
-        if(!live) {
+        if(!living) {
             tf.bulletList.remove(this);
         }
 
@@ -77,12 +77,12 @@ public class Bullet {
         }
 
         if(x< 0 || y<0 || x> TankFrame.GAME_WIDTH  || y > TankFrame.GAME_HEIGHT) {
-           live = false;
+           living = false;
         }
     }
 
-    public boolean isLive() {
-        return live;
+    public boolean isLiving() {
+        return living;
     }
 
 }
