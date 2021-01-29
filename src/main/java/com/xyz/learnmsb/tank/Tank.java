@@ -2,16 +2,18 @@ package com.xyz.learnmsb.tank;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.Random;
 
 public class Tank {
     int x=200, y=200;
     Dir dir = Dir.DOWN;
-    private final static int SPEED = 10;
-    private boolean moving = false;
+    private final static int SPEED = 2;
+    private boolean moving = true;
     private TankFrame tf = null;
     public static int width= ResourceMgr.tankD.getWidth();
     public static int height= ResourceMgr.tankD.getHeight();
     private boolean living = true;
+    private Random random = new Random();
 
     public Tank(int x, int y, Dir dir, TankFrame tf) {
         this.x = x;
@@ -75,6 +77,10 @@ public class Tank {
                 break;
             default:
                 break;
+        }
+
+        if (random.nextInt(10) > 5) {
+            this.fire();
         }
     }
 
