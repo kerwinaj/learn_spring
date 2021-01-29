@@ -14,12 +14,14 @@ public class Tank {
     public static int height= ResourceMgr.tankD.getHeight();
     private boolean living = true;
     private Random random = new Random();
+    public Group group;
 
-    public Tank(int x, int y, Dir dir, TankFrame tf) {
+    public Tank(int x, int y, Dir dir, Group group, TankFrame tf) {
         this.x = x;
         this.y = y;
         this.dir = dir;
         this.tf = tf;
+        this.group = group;
     }
 
     public void paint(Graphics graphics) {
@@ -103,7 +105,7 @@ public class Tank {
     public void fire() {
         int bX = x + Tank.width/2 - Bullet.width/2;
         int bY = y + Tank.height/2 - Bullet.height/2;
-        tf.bulletList.add(new Bullet(bX, bY, dir, tf));
+        tf.bulletList.add(new Bullet(bX, bY, dir, this.group, tf));
     }
 
     public void die() {
