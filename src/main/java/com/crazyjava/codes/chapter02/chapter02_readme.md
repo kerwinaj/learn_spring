@@ -5,7 +5,7 @@ Order21_FieldTest:
 
 
 Order22_InitTest:
-    实例变量初始化的3个时机
+    实例变量初始化的3个时机: 变量赋值, 非静态代码块, 构造器
 
 Order22_JavapToolTest:
     只是说到javap
@@ -15,6 +15,10 @@ Order22_StaticInitTest:
 
 Order22_PriceTest:
     初始化顺序(包括静态变量和成员变量), 特别是静态变量里有new的情况
+
+![Order22_PriceTest_静态变量已经分配内存空间了](chapter02_readme.assets/Order22_PriceTest_静态变量已经分配内存空间了.png)
+
+
 
 
 
@@ -42,4 +46,3 @@ Order24_FinalTest:
 Order24_FinalTest2:
     类变量也是一样!
     
-   
