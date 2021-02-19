@@ -23,24 +23,26 @@ public class Order23_SuperTest {
     }
 }
 
-class Order23_Base{
+class Order23_Base {
     int count = 2;
 }
 
-class Mid extends Order23_Base{
+class Mid extends Order23_Base {
     int count = 20;
-    public void useSuperInMid(){
-        System.out.println("[Mid.accessMid]super.count:"+super.count);
+
+    public void useSuperInMid() {
+        System.out.println("[Mid.accessMid]super.count:" + super.count);
     }
 }
 
-class Sub extends Mid{
+class Sub extends Mid {
     int count = 200;
+
     {
         System.out.println("for look there are 3 count in this");
     }
 
-    public void useSuperInSub(){
-        System.out.println("[Sub.accessMid]super.count:"+super.count);
+    public void useSuperInSub() {
+        System.out.println("[Sub.accessMid]super.count:" + super.count);
     }
 }

@@ -37,7 +37,8 @@ public class Order23_FieldAndMethodTest {
          * d2b.count:2
          * 20
          *
-         * 分析同上
+         * 其他分析同上
+         * new子类时, 子类对象里面有2个count(实例变量), 注意: 并不会单独生成父类的对象!!
          */
         Base1 d2b = d;
         System.out.println("d2b.count:" + d2b.count);
@@ -46,25 +47,25 @@ public class Order23_FieldAndMethodTest {
         /**
          * 这里即使强制转型了, 实际上还是 Derived1 对象.
          */
-        Base1 bbbb = (Base1)d;
+        Base1 bbbb = (Base1) d;
         System.out.println("bbbb.count:" + bbbb.count);
         bbbb.display();
     }
 }
 
 class Base1 {
-    int count =2;
+    int count = 2;
 
-    public void display(){
+    public void display() {
         System.out.println(this.count);
     }
 }
 
 class Derived1 extends Base1 {
-    int count =20;
+    int count = 20;
 
     @Override
-    public void display(){
+    public void display() {
         System.out.println(this.count);
     }
 }

@@ -8,7 +8,7 @@ public class Order23_SuperTest02 {
         Apple a = new Apple();
         Fruit f = a.getSuper();
 
-        System.out.println("a==f : " + (a ==f));
+        System.out.println("a==f : " + (a == f));
 
         System.out.println(a.color);
         System.out.println(f.color);
@@ -18,40 +18,44 @@ public class Order23_SuperTest02 {
         a.accessSuperMethod();
         f.accessSuperMethod();
 
+        a.accessSuperMethod2();
         f.accessSuperMethod2();
     }
 }
-class Basic{
-    public void info(){
+
+class Basic {
+    public void info() {
         System.out.println("[Basic.info]");
     }
 }
 
-class Fruit extends Basic{
-    String color="未定义的颜色";
+class Fruit extends Basic {
+    String color = "未定义的颜色";
+
     @Override
-    public void info(){
+    public void info() {
         System.out.println("[Fruit.info]");
     }
 
-    public Fruit getThis(){
+    public Fruit getThis() {
         System.out.println("[Fruit.getThis]");
         return this;
     }
 
-    public void accessSuperMethod(){
+    public void accessSuperMethod() {
         super.info();
     }
 
-    public void accessSuperMethod2(){
+    public void accessSuperMethod2() {
         super.info();
     }
 }
 
-class Apple extends Fruit{
-    String color="红色";
+class Apple extends Fruit {
+    String color = "红色";
+
     @Override
-    public void info(){
+    public void info() {
         System.out.println("[Apple.info]");
     }
 
@@ -60,18 +64,18 @@ class Apple extends Fruit{
      * 注意, 是不允许直接用 return super;这样的语句的.
      * super不能被当作一个引用变量(this就可以), 它只是一个关键字(用法也就那几种)!!
      */
-    public Fruit getSuper(){
+    public Fruit getSuper() {
         return super.getThis();
     }
 
     @Override
-    public Fruit getThis(){
+    public Fruit getThis() {
         System.out.println("[Apple.getThis]");
         return this;
     }
 
     @Override
-    public void accessSuperMethod(){
+    public void accessSuperMethod() {
         super.info();
     }
 }
