@@ -4,6 +4,7 @@ import com.xiaopeng.common_component.enums.CharsetEnum;
 import com.xiaopeng.common_component.enums.ErrorCode;
 import com.xiaopeng.common_component.exception.DataAccessException;
 import com.xiaopeng.common_component.io.ResourceUtil;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -39,13 +40,30 @@ public class HttpUtil {
         System.out.println("=============" + responseStr);
 
         String host = "http://logan-gateway.test.logan.xiaopeng.local/";
-        responseStr = postRequest(host, "xp-sns-boot", "/logan/thread/feed", contentType, sendData, CharsetEnum.UTF_8.getValue(), CharsetEnum.UTF_8.getValue());
+        responseStr = postRequest(host, "xp-sns-boot", "/logan/thread/feed", contentType, sendData);
         System.out.println("=============" + responseStr);
-        responseStr = getRequest(host, "xp-content-admin-boot", "/admin/enums/getEnums", CharsetEnum.UTF_8.getValue());
+        responseStr = getRequest(host, "xp-content-admin-boot", "/admin/enums/getEnums", null);
         System.out.println("=============" + responseStr);
     }
 
-    public static String getUrl(String host, String serviceName, String uri) {
+    public static String postRequest(String host, String serviceName, String uri, String contentType, String data) throws DataAccessException {
+        String url = getUrl(host, serviceName, uri);
+        Map<String, String> headerMap = new HashMap<>();
+        headerMap.put("Content-type", contentType);
+        if (host.contains("logan-gateway.test.logan.xiaopeng.local")) {
+            headerMap.put("logan", "test");
+        }
+        return post(url, data, headerMap, CharsetEnum.UTF_8.getValue(), CharsetEnum.UTF_8.getValue());
+    }
+
+    public static String getRequest(String host, String serviceName, String uri, Map<String, String> paramMap) {
+        String url = getUrl(host, serviceName, uri);
+        String paramString = getParamString(paramMap);
+        String urlWithParamString = addParamString(url, paramString);
+        return get(urlWithParamString, CharsetEnum.UTF_8.getValue());
+    }
+
+    private static String getUrl(String host, String serviceName, String uri) {
         String url = "";
         url += host;
         if (host.contains("logan-gateway.test.logan.xiaopeng.local")) {
@@ -55,19 +73,23 @@ public class HttpUtil {
         return url;
     }
 
-    public static String postRequest(String host, String serviceName, String uri, String contentType, String data, String sendCharset, String receiveCharset) throws DataAccessException {
-        String url = getUrl(host, serviceName, uri);
-        Map<String, String> headerMap = new HashMap<>();
-        headerMap.put("Content-type", contentType);
-        if (host.contains("logan-gateway.test.logan.xiaopeng.local")) {
-            headerMap.put("logan", "test");
+    private static String getParamString(Map<String, String> paramMap) {
+        if (null == paramMap || paramMap.isEmpty()) {
+            return "";
         }
-        return post(url, data, headerMap, sendCharset, receiveCharset);
+        StringBuilder builder = new StringBuilder();
+        for (String key : paramMap.keySet()) {
+            builder.append("&")
+                    .append(key).append("=").append(paramMap.get(key));
+        }
+        return builder.deleteCharAt(0).toString();
     }
 
-    public static String getRequest(String host, String serviceName, String uri, String receiveCharset) throws DataAccessException {
-        String url = getUrl(host, serviceName, uri);
-        return get(url, receiveCharset);
+    private static String addParamString(String url, String paramString) {
+        if (StringUtils.isNotEmpty(paramString)) {
+            url = url + "?" + paramString;
+        }
+        return url;
     }
 
     public static String post(String url, String content, Map<String, String> headerMap, String sendCharset, String receiveCharset)
@@ -89,6 +111,11 @@ public class HttpUtil {
             for (Map.Entry<String, String> entry : headerMap.entrySet()) {
                 connection.setRequestProperty(entry.getKey(), entry.getValue());
             }
+
+            Integer connectTimeoutMs = 4000;
+            Integer readTimeoutMs = 4000;
+            connection.setConnectTimeout(connectTimeoutMs);
+            connection.setReadTimeout(readTimeoutMs);
 
             os = connection.getOutputStream();
             os.write(content.getBytes(sendCharset));
