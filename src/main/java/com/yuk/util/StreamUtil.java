@@ -64,7 +64,7 @@ public class StreamUtil {
             }
             System.out.println("inner:"+elem);
         });
-        System.out.println("result:"+result+",stream:");
+        System.out.println("result:"+result);
         /**
          * Exception in thread "main" java.lang.IllegalStateException: stream has already been operated upon or closed
          * https://www.cnblogs.com/kakaxisir/p/5755507.html
