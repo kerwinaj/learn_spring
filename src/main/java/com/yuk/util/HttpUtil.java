@@ -29,27 +29,31 @@ public class HttpUtil {
         headerMap.put("logan", "test");
         String url = "http://logan-gateway.test.logan.xiaopeng.local/xp-sns-boot/logan/thread/feed";
         String responseStr = post(url, sendData, headerMap, CharsetEnum.UTF_8.getValue(), CharsetEnum.UTF_8.getValue());
-        System.out.println("=============" + responseStr);
+        System.out.println("[post]" + responseStr);
 
         url = "http://logan-gateway.test.logan.xiaopeng.local/xp-content-admin-boot/admin/enums/getEnums";
         responseStr = get(url, CharsetEnum.UTF_8.getValue());
-        System.out.println("=============" + responseStr);
+        System.out.println("[get]" + responseStr);
 
         url = "http://logan-gateway.test.logan.xiaopeng.local/xp-content-admin-boot/info";
         responseStr = get(url, CharsetEnum.UTF_8.getValue());
-        System.out.println("=============" + responseStr);
+        System.out.println("[get]" + responseStr);
 
         String host = "http://logan-gateway.test.logan.xiaopeng.local/";
-        responseStr = postRequest(host, "xp-sns-boot", "/logan/thread/feed", contentType, sendData);
-        System.out.println("=============" + responseStr);
+        responseStr = postRequest(host, "xp-sns-boot", "/logan/thread/feed", contentType, null, sendData);
+        System.out.println("[postRequest]" + responseStr);
         responseStr = getRequest(host, "xp-content-admin-boot", "/admin/enums/getEnums", null);
-        System.out.println("=============" + responseStr);
+        System.out.println("[getRequest]" + responseStr);
     }
 
-    public static String postRequest(String host, String serviceName, String uri, String contentType, String data) throws DataAccessException {
-        String url = getUrl(host, serviceName, uri);
-        Map<String, String> headerMap = new HashMap<>();
-        headerMap.put("Content-type", contentType);
+    public static String postRequest(String host, String serviceName, String uri, String contentType, Map<String, String> headerMap, String data) throws DataAccessException {
+        String url = genUrl(host, serviceName, uri);
+        if (null == headerMap) {
+            headerMap = new HashMap<>();
+        }
+        if (StringUtils.isNotEmpty(contentType)) {
+            headerMap.put("Content-type", contentType);
+        }
         if (host.contains("logan-gateway.test.logan.xiaopeng.local")) {
             headerMap.put("logan", "test");
         }
@@ -57,13 +61,13 @@ public class HttpUtil {
     }
 
     public static String getRequest(String host, String serviceName, String uri, Map<String, String> paramMap) {
-        String url = getUrl(host, serviceName, uri);
-        String paramString = getParamString(paramMap);
-        String urlWithParamString = addParamString(url, paramString);
+        String url = genUrl(host, serviceName, uri);
+        String paramString = genParamString(paramMap);
+        String urlWithParamString = addParamString2Url(url, paramString);
         return get(urlWithParamString, CharsetEnum.UTF_8.getValue());
     }
 
-    private static String getUrl(String host, String serviceName, String uri) {
+    private static String genUrl(String host, String serviceName, String uri) {
         String url = "";
         url += host;
         if (host.contains("logan-gateway.test.logan.xiaopeng.local")) {
@@ -73,7 +77,7 @@ public class HttpUtil {
         return url;
     }
 
-    private static String getParamString(Map<String, String> paramMap) {
+    private static String genParamString(Map<String, String> paramMap) {
         if (null == paramMap || paramMap.isEmpty()) {
             return "";
         }
@@ -85,14 +89,17 @@ public class HttpUtil {
         return builder.deleteCharAt(0).toString();
     }
 
-    private static String addParamString(String url, String paramString) {
+    private static String addParamString2Url(String url, String paramString) {
         if (StringUtils.isNotEmpty(paramString)) {
             url = url + "?" + paramString;
         }
         return url;
     }
 
-    public static String post(String url, String content, Map<String, String> headerMap, String sendCharset, String receiveCharset)
+    /**
+     * 底层方法
+     */
+    private static String post(String url, String content, Map<String, String> headerMap, String sendCharset, String receiveCharset)
             throws DataAccessException {
         OutputStream os = null;
         InputStream is = null;
@@ -160,7 +167,11 @@ public class HttpUtil {
         }
     }
 
-    public static String get(String url, String receiveCharset) {
+
+    /**
+     * 底层方法
+     */
+    private static String get(String url, String receiveCharset) {
         InputStream is = null;
         BufferedReader bf = null;
         try {
