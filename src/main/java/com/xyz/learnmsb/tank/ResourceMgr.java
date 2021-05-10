@@ -8,6 +8,8 @@ import java.io.InputStream;
 public class ResourceMgr {
     public static BufferedImage tankL, tankU, tankR, tankD;
     public static BufferedImage bulletL, bulletU, bulletR, bulletD;
+    public static BufferedImage[] explodes = new BufferedImage[16];
+
     static {
         try {
             InputStream inputStream = ResourceMgr.class.getClassLoader().getResourceAsStream("tank/images/tankL.gif");
@@ -41,6 +43,13 @@ public class ResourceMgr {
             inputStream = ResourceMgr.class.getClassLoader().getResourceAsStream("tank/images/bulletD.gif");
             assert inputStream != null;
             bulletD = ImageIO.read(inputStream);
+
+            for (int i = 0; i < 16; i++) {
+                int index = i + 1;
+                inputStream = ResourceMgr.class.getClassLoader().getResourceAsStream("tank/images/e" + index + ".gif");
+                assert inputStream != null;
+                explodes[i] = ImageIO.read(inputStream);
+            }
         } catch (IOException e) {
             System.out.println("error in read gif");
             e.printStackTrace();

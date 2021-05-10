@@ -15,6 +15,9 @@ public class TankFrame extends Frame {
     java.util.List<Tank> tankList = new ArrayList<>();
     public final static int GAME_WIDTH = 800;
     public final static int GAME_HEIGHT = 600;
+
+    Explode explode = new Explode(100, 100, this);
+
     public TankFrame() {
         setSize(GAME_WIDTH, GAME_HEIGHT);
         setResizable(false);
@@ -64,6 +67,8 @@ public class TankFrame extends Frame {
         for (int i = 0; i < tankList.size(); i++) {
             tankList.get(i).paint(graphics);
         }
+
+        explode.paint(graphics);
 
         // 碰撞检测
         for (int i = 0; i<bulletList.size(); i++ ){
