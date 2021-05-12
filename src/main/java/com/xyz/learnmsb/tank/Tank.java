@@ -67,7 +67,7 @@ public class Tank {
 
         int realSpeed = SPEED;
         if (Group.GOOD == group) {
-            realSpeed = 2*SPEED;
+            realSpeed = 4 * SPEED;
         }
 
         switch (dir) {
@@ -87,9 +87,16 @@ public class Tank {
                 break;
         }
 
-        if (random.nextInt(10) > 5) {
+        if (Group.BAD == group && random.nextInt(100) > 95) {
             this.fire();
         }
+        if (Group.BAD == group && random.nextInt(100) > 95) {
+            randomDir();
+        }
+    }
+
+    private void randomDir() {
+        this.dir = Dir.values()[random.nextInt(4)];
     }
 
     public Dir getDir() {
