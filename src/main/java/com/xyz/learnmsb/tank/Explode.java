@@ -8,7 +8,6 @@ public class Explode {
     private TankFrame tf = null;
     public static int width= ResourceMgr.explodes[0].getWidth();
     public static int height= ResourceMgr.explodes[0].getHeight();
-    private boolean living = true;
 
     private int step = 0;
 
@@ -21,7 +20,7 @@ public class Explode {
     public void paint(Graphics graphics) {
         graphics.drawImage(ResourceMgr.explodes[step++], x, y, null);
         if (step >= ResourceMgr.explodes.length) {
-            step=0;
+            tf.explodeList.remove(this);
         }
     }
 

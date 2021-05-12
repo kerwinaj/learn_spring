@@ -64,18 +64,24 @@ public class Tank {
         if(!moving) {
             return;
         }
+
+        int realSpeed = SPEED;
+        if (Group.GOOD == group) {
+            realSpeed = 2*SPEED;
+        }
+
         switch (dir) {
             case LEFT:
-                x -= SPEED;
+                x -= realSpeed;
                 break;
             case UP:
-                y -= SPEED;
+                y -= realSpeed;
                 break;
             case RIGHT:
-                x += SPEED;
+                x += realSpeed;
                 break;
             case DOWN:
-                y += SPEED;
+                y += realSpeed;
                 break;
             default:
                 break;

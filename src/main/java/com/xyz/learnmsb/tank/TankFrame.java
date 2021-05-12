@@ -13,10 +13,9 @@ public class TankFrame extends Frame {
     Tank myTank = new Tank(200, 400, Dir.DOWN, Group.GOOD, this);
     java.util.List<Bullet> bulletList = new ArrayList<>();
     java.util.List<Tank> tankList = new ArrayList<>();
+    java.util.List<Explode> explodeList = new ArrayList<>();
     public final static int GAME_WIDTH = 800;
     public final static int GAME_HEIGHT = 600;
-
-    Explode explode = new Explode(100, 100, this);
 
     public TankFrame() {
         setSize(GAME_WIDTH, GAME_HEIGHT);
@@ -55,6 +54,7 @@ public class TankFrame extends Frame {
         graphics.setColor(Color.WHITE);
         graphics.drawString("子弹的数量:" + bulletList.size(), 10, 60);
         graphics.drawString("敌人的数量:" + tankList.size(), 10, 80);
+        graphics.drawString("爆炸的数量:" + explodeList.size(), 10, 100);
         graphics.setColor(color);
 
         System.out.println("call paint");
@@ -68,7 +68,9 @@ public class TankFrame extends Frame {
             tankList.get(i).paint(graphics);
         }
 
-        explode.paint(graphics);
+        for (int i = 0; i < explodeList.size(); i++) {
+            explodeList.get(i).paint(graphics);
+        }
 
         // 碰撞检测
         for (int i = 0; i<bulletList.size(); i++ ){
